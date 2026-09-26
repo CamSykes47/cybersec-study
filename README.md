@@ -18,4 +18,4 @@ I'm currently aiming for a career in security engineering/purple teaming, so any
 ### Certifications
 | Provider | Certificate Level | Completed/In Progress | Date Issued | Certificate Link |
 | -------------- | --------- | ------ | ------- | ----------- |
-| CompTIA | Security+ | Completed | 2026-05-23 | [Link](Certificates/CompTIA/CompTIA Security+ ce certificate.pdf) |
+| CompTIA | Security+ | Completed | 2026-05-23 | [Link](Certificates/CompTIA/CompTIA%Security+%ce%certificate.pdf) |
