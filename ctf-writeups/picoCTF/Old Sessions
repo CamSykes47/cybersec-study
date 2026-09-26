@@ -1,0 +1,81 @@
+# Old Sessions - Web Exploitation
+
+**Source:** picoCTF
+
+## Challenge Overview
+
+Proper session timeout controls are critical for securing user accounts. If a user logs in on a public or shared computer but doesn't explicitly log out (instead simply closing the browser tab), and session expiration dates are misconfigured, the session may remain active indefinitely.
+
+This then allows an attacker using the same browser later to access the user's account without needing credentials, exploiting the fact that sessions never expire and remain authenticated.
+
+Your friend tells you to check out a new social media platform he built a few years ago. Although it's still under development, he said the site is almost complete. He also mentioned that he hates constantly logging into sites, and so has made his page that 'once you login, you never have to log-out again'!
+
+## Info Gathering
+
+- **Link:** `http://dolphin-cove.picoctf.net:[insertinstanceID]/`
+- Allows you to register and stay logged in
+- Upon logging in, one user points out a "strange site" at `http://dolphin-cove.picoctf.net:61377/sessions`
+  - Accessing this link shows two active sessions: 'admin' and yours, with session identifiers
+  
+### Hints
+
+- "Do you know how to use the web inspector?"
+- "Where are cookies stored?"
+  - Cookies stored locally == keys updated via inspector will allow you to locally access a different username?
+
+## Solutions
+
+### Solution 1 (Initial Solution)
+
+1. Open Firefox Developer Tools: `F12 > Inspector`
+2. Using the web inspector, I changed the permanent modifier for 'admin' to `False` and changed the key to something else
+3. Changed my name with inspect element to 'admin', keeping my session key
+4. Opened the main site in a new tab and logged in using 'admin' as the username and my password from the username I registered with
+5. Was allowed access
+6. **Flag:** `picoCTF{REDACTED}`
+
+**Note:** This probably wasn't the intended solution, but it's an interesting alternative showing how the vulnerability allows access without actually editing cookies.
+
+### Solution 2 (Intended Solution - Better)
+
+1. Go to `/sessions` link and copy session ID for admin
+2. Go back to main page
+3. Open Firefox Developer Tools: `F12 > Storage > Cookies`
+4. Look for the session cookie and enter the copied admin ID as the value
+5. Refresh the page
+6. **Flag:** `picoCTF{REDACTED}`
+
+## Vulnerabilities Identified
+
+1. **No session expiration on timeout** - Sessions remain active indefinitely
+2. **Exposed session IDs with no access control** - Multiple user sessions are publicly visible at `/sessions`
+3. **Static session IDs** - Session IDs don't change if logins or privileges change
+
+**Attack Vector:** Session Hijacking via Cookie Spoofing
+
+## Impact Assessment
+
+- **User Privacy:** Attackers could gain access to user PII left on the social media site, opening them up for identity theft attempts and fraud
+- **Financial Risk:** If the site captures bank information for in-app purchases, attackers could access this data, leading to financial loss for users
+- **Business Impact:** Significant losses due to lawsuits and user outrage from the data leak caused by poor security standards
+
+## Prevention Measures
+
+- Set rules to expire inactive sessions after a set amount of time
+- Only store session data on server-side with proper environmental authentication checks so only administrators can access it
+- Use HTTPS on the full site, not just login pages
+- Implement Secure Cookies (HttpOnly, Secure, SameSite flags)
+- Regenerate Session IDs upon each login attempt
+
+## Detection Methods
+
+- **Fingerprinting Session Tokens:** Use data such as User-Agent headers or IP subnets (though this can be difficult if attempts are made via mobile networks)
+- **Monitor for Anomalies:** Check for single session IDs used from:
+  - Multiple IP addresses
+  - Varying geographical locations
+  - Multiple attempts in a short time frame
+
+## Further Reading
+
+- [The Ultimate Guide to Session Hijacking (Cookie Hijacking)](https://www.thesslstore.com/blog/the-ultimate-guide-to-session-hijacking-aka-cookie-hijacking/)
+- [Session Hijacking - WhiteIntel Blog](https://whiteintel.io/blog/session-hijacking)
