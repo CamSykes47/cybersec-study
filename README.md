@@ -9,7 +9,7 @@ I'm currently aiming for a career in security engineering/purple teaming, so any
 | -------------- | ------ | ------- |
 | picoCTF/CyLab | 25 | [Links](ctf-writeups/picoCTF) |
 | TryHackMe | 1 | [Links]() |
-| OverTheWire | 20 | [Link]() |
+| OverTheWire | 20 | [Link](ctf-writeups/OverTheWire) |
 | pwn.college | ------ | ------- |
 
 ### Tools
