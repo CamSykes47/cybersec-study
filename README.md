@@ -7,8 +7,8 @@ I'm currently aiming for a career in security engineering/purple teaming, so any
 ### CTFs
 | Provider/ Host | # Completed | Writeup |
 | -------------- | ------ | ------- |
-| picoCTF/CyLab | 25 | [Links] |
-| TryHackMe | 1 | [Links] |
+| picoCTF/CyLab | 25 | [Links]() |
+| TryHackMe | 1 | [Links]() |
 | OverTheWire | ------ | ------- |
 | pwn.college | ------ | ------- |
 
