@@ -19,3 +19,4 @@ I'm currently aiming for a career in security engineering/purple teaming, so any
 | Provider | Certificate Level | Completed/In Progress | Date Issued | Certificate Link |
 | -------------- | --------- | ------ | ------- | ----------- |
 | CompTIA | Security+ | Completed | 2026-05-23 | [Link](Certificates/CompTIA/CompTIASec+.pdf) |
+| Cisco Systems | CCNA | In Progress | ------- | ----------- |
